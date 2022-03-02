@@ -74,14 +74,14 @@ public class LoginServlet extends HttpServlet{
 			//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 			//			con = DriverManager.getConnection(url, "root", "1234");
 
-			
+			System.out.println(2);
 
 			String sql = "select * from members";
 
 			pstmt = con.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
-			
+			System.out.println(3);
 
 			//sql구문 실행하기
 
