@@ -35,7 +35,7 @@ public class InsertServlet extends HttpServlet{
 		ResultSet rs = null;
 
 		try{
-			// 2. 전송된 값을 db에 저장.
+			// 2. 전송된 값을 db에 저장......
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
 			con = DriverManager.getConnection(url, "lion", "1234");
