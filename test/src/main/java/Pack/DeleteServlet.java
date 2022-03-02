@@ -67,6 +67,7 @@ public class DeleteServlet extends HttpServlet{
 
 			pw.println("회원삭제에 실패했습니다. ");
 			pw.println("<a href='javascript:history.go(-1)'>이전페이지로 가기</a>");
+
 			pw.println("</body>");
 			pw.println("</html>");
 			pw.close();
