@@ -28,10 +28,10 @@ public class UpdateBoard extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// 1. parameter·Î Àü¼ÛµÈ id¾ò±â.
+		// 1. parameterë¡œ ì „ì†¡ëœ idì–»ê¸°.
 		Integer num = Integer.parseInt(req.getParameter("num"));
 
-		// 2. id¿¡ ÇØ´çÇÏ´Â Á¤º¸¸¦ db¿¡¼­ Á¶È¸ÇØ¼­ Ãâ·Â.
+		// 2. idì— í•´ë‹¹í•˜ëŠ” ì •ë³´ë¥¼ dbì—ì„œ ì¡°íšŒí•´ì„œ ì¶œë ¥.
 		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter pw = resp.getWriter();
 		pw.println("<html>");
@@ -47,22 +47,20 @@ public class UpdateBoard extends HttpServlet{
 		Connection con = null;
 		ResultSet rs=null;
 		try{
-			// 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
+			// 2. ì „ì†¡ëœ ê°’ì„ dbì— ì €ì¥.
 
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-		     con = DriverManager.getConnection(url, "lion", "1234");
-			
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+
+			con = DriverManager.getConnection(url, "root", "1234");
 
 			String sql = "select * from boards where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 
-			//sql±¸¹® ½ÇÇàÇÏ±â
+			//sqlêµ¬ë¬¸ ì‹¤í–‰í•˜ê¸°
 			rs = pstmt.executeQuery();
 			rs.next();
 			String title = rs.getString("title");
@@ -75,14 +73,14 @@ public class UpdateBoard extends HttpServlet{
 			pw.println("<form method='post' action='updateokboard.do'>");
 			
 			pw.println("<input type='hidden' name='num' value='" + num + "'/>");
-			pw.println("±Û ¹øÈ£<input type='text' name='num' value='" + num + "' disabled='disabled'/><br/>");
+			pw.println("ê¸€ ë²ˆí˜¸<input type='text' name='num' value='" + num + "' disabled='disabled'/><br/>");
 			
 			//pw.println("<input type='hidden' name='wr' value='" + wr + "'/>");
-			pw.println("ÀÛ¼ºÀÚ <input type='text' name='wr' value='" + wr + "' disabled='disabled'/><br/>");
+			pw.println("ì‘ì„±ì <input type='text' name='wr' value='" + wr + "' disabled='disabled'/><br/>");
 			
-			pw.println("Á¦¸ñ  <input type='text' name='title' value='" + title + "'/><br/>");
+			pw.println("ì œëª©  <input type='text' name='title' value='" + title + "'/><br/>");
 			pw.println("<textarea rows='10' type='text' name='content'>"+ content +"</textarea><br/>");
-			pw.println("<input type='submit' value='ÀúÀå'/><br/>");
+			pw.println("<input type='submit' value='ì €ì¥'/><br/>");
 			pw.println("</form>");
 			pw.println("</div>");
 			

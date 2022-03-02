@@ -34,15 +34,15 @@ public class UpdateServlet extends HttpServlet{
 
 			throws ServletException, IOException {
 
-		// 1. parameter·Î Àü¼ÛµÈ id¾ò±â.
+		// 1. parameterë¡œ ì „ì†¡ëœ idì–»ê¸°.
 
 		String id=req.getParameter("id");
 
 		
 
-		// 2. id¿¡ ÇØ´çÇÏ´Â Á¤º¸¸¦ db¿¡¼­ Á¶È¸ÇØ¼­ Ãâ·Â.
+		// 2. idì— í•´ë‹¹í•˜ëŠ” ì •ë³´ë¥¼ dbì—ì„œ ì¡°íšŒí•´ì„œ ì¶œë ¥.
 
-		resp.setContentType("text/html;charset=UTF-8");
+		resp.setContentType("text/html;charset=euc-kr");
 
 		PrintWriter pw = resp.getWriter();
 
@@ -62,15 +62,14 @@ public class UpdateServlet extends HttpServlet{
 
 		try{
 
-			// 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
+			// 2. ì „ì†¡ëœ ê°’ì„ dbì— ì €ì¥.
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-		     con = DriverManager.getConnection(url, "lion", "1234");
-			
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
+			String url = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC";
+
+			con = DriverManager.getConnection(url, "root", "1234");
+
 			
 
 			String sql = "select * from members where id=?";
@@ -81,7 +80,7 @@ public class UpdateServlet extends HttpServlet{
 
 			
 
-			//sql±¸¹® ½ÇÇàÇÏ±â
+			//sqlêµ¬ë¬¸ ì‹¤í–‰í•˜ê¸°
 
 			rs = pstmt.executeQuery();
 
@@ -99,15 +98,15 @@ public class UpdateServlet extends HttpServlet{
 
 			pw.println("<input type='hidden' name='id' value='" + id + "'/>");
 
-			pw.println("¾ÆÀÌµğ<input type='text' name='id' value='" + id + "' disabled='disabled'/><br/>");
+			pw.println("ì•„ì´ë””<input type='text' name='id' value='" + id + "' disabled='disabled'/><br/>");
 
-			pw.println("ºñ¹Ğ¹øÈ£<input type='text' name='pwd' value='" + pwd + "'/><br/>");
+			pw.println("ë¹„ë°€ë²ˆí˜¸<input type='text' name='pwd' value='" + pwd + "'/><br/>");
 
 			pw.println("email<input type='text' name='email' value='" + email + "'/><br/>");
 
 			pw.println("phone<input type='text' name='phone' value='" + phone + "'/><br/>");
 
-			pw.println("<input type='submit' value='ÀúÀå'/><br/>");
+			pw.println("<input type='submit' value='ì €ì¥'/><br/>");
 
 			pw.println("</form>");
 

@@ -21,7 +21,8 @@ public class InsertServlet extends HttpServlet{
       
       response.setContentType("text/html;charset=UTF-8");
       PrintWriter pw = response.getWriter();
-      // 1. ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ °ªÀ» ¾ò¾î¿À±â.
+
+      // 1. íŒŒë¼ë¯¸í„°ë¡œ ì „ì†¡ëœ ê°’ì„ ì–»ì–´ì˜¤ê¸°.
       request.setCharacterEncoding("UTF-8");
       String id = request.getParameter("id");
       String pwd= request.getParameter("pwd");
@@ -35,13 +36,10 @@ public class InsertServlet extends HttpServlet{
       ResultSet rs = null;
 
       try{
-         // 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
+         // 2. ì „ì†¡ëœ ê°’ì„ dbì— ì €ì¥.
          Class.forName("com.mysql.cj.jdbc.Driver");
-         String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-	     con = DriverManager.getConnection(url, "lion", "1234");
-         
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
+         String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+         con = DriverManager.getConnection(url, "root", "1234");
          
          String checksql = "select * from members where id=?";
          pstmt2 = con.prepareStatement(checksql);
@@ -52,8 +50,8 @@ public class InsertServlet extends HttpServlet{
                pw.println("<html>");
                pw.println("<head></head>");
                pw.println("<body>");
-               pw.println("¾ÆÀÌµğÁßº¹ ÀÎÇØ °¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br/>");
-               pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
+               pw.println("ì•„ì´ë””ì¤‘ë³µ ì¸í•´ ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br/>");
+               pw.println("<a href='javascript:history.go(-1)'>ì´ì „í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
                pw.println("</body>");
                pw.println("</html>");
                pstmt2.close();
@@ -72,7 +70,7 @@ public class InsertServlet extends HttpServlet{
          pstmt.setString(3, email);
          pstmt.setString(4, phone);
 
-         //sql±¸¹® ½ÇÇàÇÏ±â
+         //sqlêµ¬ë¬¸ ì‹¤í–‰í•˜ê¸°
          n=pstmt.executeUpdate();
 
 
@@ -89,21 +87,20 @@ public class InsertServlet extends HttpServlet{
          }
       }
 
-      // 3. »ç¿ëÀÚ(Å¬¶óÀÌ¾ğÆ®)¿¡ °á°ú¸¦ ÀÀ´äÇÏ±â.
+      // 3. ì‚¬ìš©ì(í´ë¼ì´ì–¸íŠ¸)ì— ê²°ê³¼ë¥¼ ì‘ë‹µí•˜ê¸°.
       pw.println("<html>");
       pw.println("<head></head>");
       pw.println("<body>");
 
       if(n>0){
-         pw.println( id + "´Ô! ¼º°øÀûÀ¸·Î °¡ÀÔµÇ¾ú½À´Ï´Ù.<br/>");
-         pw.println("<a href='index.html'>¸ŞÀÎÆäÀÌÁö ÀÌµ¿</a>");
+         pw.println( id + "ë‹˜! ì„±ê³µì ìœ¼ë¡œ ê°€ì…ë˜ì—ˆìŠµë‹ˆë‹¤.<br/>");
+         pw.println("<a href='index.html'>ë©”ì¸í˜ì´ì§€ ì´ë™</a>");
 
       }else{
-         pw.println("¿À·ù·Î ÀÎÇØ °¡ÀÔ¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br/>");
-         pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
+         pw.println("ì˜¤ë¥˜ë¡œ ì¸í•´ ê°€ì…ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br/>");
+         pw.println("<a href='javascript:history.go(-1)'>ì´ì „í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
       }   
       pw.println("</body>");
       pw.println("</html>");
    }
-
 }

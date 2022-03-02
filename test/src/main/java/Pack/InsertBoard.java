@@ -25,70 +25,67 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class InsertBoard extends HttpServlet{
-   @Override
-   protected void service(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
-      // 1. ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ °ªÀ» ¾ò¾î¿À±â.
-      request.setCharacterEncoding("UTF-8");
-      String title = request.getParameter("title");
-      String content= request.getParameter("content");
-      HttpSession session = request.getSession();
-      String wr = (String) session.getAttribute("memberId");
-      int n=0;
-      PreparedStatement pstmt = null;
-      Connection con = null;
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-      try{
-         // 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
+		// 1. íŒŒë¼ë¯¸í„°ë¡œ ì „ì†¡ëœ ê°’ì„ ì–»ì–´ì˜¤ê¸°.
 
+		request.setCharacterEncoding("UTF-8");
+		String title = request.getParameter("title");
+		String content= request.getParameter("content");
+		HttpSession session = request.getSession();
+		String wr = (String) session.getAttribute("memberId");
+		int n=0;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+
+		try{
+
+			// 2. ì „ì†¡ëœ ê°’ì„ dbì— ì €ì¥.
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+			con = DriverManager.getConnection(url, "root", "1234");
+			String sql = "insert into boards values( ?,?,?,?, now() )";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setNull(1, Types.INTEGER );
+			pstmt.setString(2, title);
+			pstmt.setString(3, content);
+			pstmt.setString(4, wr);
 
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-	        con = DriverManager.getConnection(url, "lion", "1234");
+			//sqlêµ¬ë¬¸ ì‹¤í–‰í•˜ê¸°
+			n=pstmt.executeUpdate();
 			
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
-	        
-         String sql = "insert into boards values( ?,?,?,?, now() )";
-         pstmt = con.prepareStatement(sql);
-         pstmt.setNull(1, Types.INTEGER );
-         pstmt.setString(2, title);
-         pstmt.setString(3, content);
-         pstmt.setString(4, wr);
+		}catch(ClassNotFoundException ce){
+			System.out.println(ce.getMessage());
+		}catch(SQLException se){
+			System.out.println(se.getMessage());
+		}finally{
+			try{
+				if(pstmt!=null) pstmt.close();
+				if(con!=null) con.close();
+			}catch(SQLException se){
+				System.out.println(se.getMessage());
+			}
+		}
 
-         //sql±¸¹® ½ÇÇàÇÏ±â
-
-         n=pstmt.executeUpdate();
-      }catch(ClassNotFoundException ce){
-         System.out.println(ce.getMessage());
-      }catch(SQLException se){
-         System.out.println(se.getMessage());
-      }finally{
-         try{
-            if(pstmt!=null) pstmt.close();
-            if(con!=null) con.close();
-         }catch(SQLException se){
-            System.out.println(se.getMessage());
-         }
-      }
-
-      // 3. »ç¿ëÀÚ(Å¬¶óÀÌ¾ğÆ®)¿¡ °á°ú¸¦ ÀÀ´äÇÏ±â.
-      response.setContentType("text/html;charset=UTF-8");
-      PrintWriter pw = response.getWriter();
-      pw.println("<html>");
-      pw.println("<head></head>");
-      pw.println("<body>");
-      if(n>0){
-         pw.println( wr + "´Ô! °Ô½Ã±ÛÀÌ ÀÛ¼ºµÇ¾ú½À´Ï´Ù.<br/>");
-         pw.println("<a href='listboard.do'>°Ô½Ã±Û ¸®½ºÆ®·Î °¡±â</a>");
-      }else{
-    	 pw.println("<script type=\"text/javascript\">");
-    	 pw.println("alert('Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµğÀÔ´Ï´Ù.');");
-    	 pw.println("</script>");
-         pw.println("°Ô½Ã±Û ÀÛ¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br/>");
-         pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
-      }
-      pw.println("</body>");
-      pw.println("</html>");
-   }
+		// 3. ì‚¬ìš©ì(í´ë¼ì´ì–¸íŠ¸)ì— ê²°ê³¼ë¥¼ ì‘ë‹µí•˜ê¸°.
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		pw.println("<html>");
+		pw.println("<head></head>");
+		pw.println("<body>");
+		if(n>0){
+			pw.println( wr + "ë‹˜! ê²Œì‹œê¸€ì´ ì‘ì„±ë˜ì—ˆìŠµë‹ˆë‹¤.<br/>");
+			pw.println("<a href='listboard.do'>ë©”ì¸í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
+		}else{
+			pw.println("<script type=\"text/javascript\">");
+			pw.println("alert('ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.');");
+			pw.println("</script>");
+			pw.println("ê²Œì‹œê¸€ ì‘ì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br/>");
+			pw.println("<a href='javascript:history.go(-1)'>ì´ì „í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
+		}
+		pw.println("</body>");
+		pw.println("</html>");
+	}
 }
