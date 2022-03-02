@@ -37,23 +37,23 @@ import java.sql.Timestamp;
 
 public class LoginServlet extends HttpServlet{
 
-
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 
 			throws ServletException, IOException {
+	
+		// 1. íŒŒë¼ë¯¸í„°ë¡œ ì „ì†¡ëœ ê°’ì„ ì–»ì–´ì˜¤ê¸°.
 
-		// 1. ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ °ªÀ» ¾ò¾î¿À±â.
-
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("euc-kr");
 
 		String id = request.getParameter("id");
 
 		String pwd= request.getParameter("pwd");
-
+		
 		ResultSet rs = null;
 
-
+		
 		System.out.println(1);
 
 		int n=0;
@@ -63,36 +63,53 @@ public class LoginServlet extends HttpServlet{
 		Connection con = null;
 
 		try{
-
-			// 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
+			
+			// 2. ì „ì†¡ëœ ê°’ì„ dbì— ì €ì¥.
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
+<<<<<<< HEAD
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+			
+			con = DriverManager.getConnection(url, "root", "1234");
+			
+=======
 			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
 			con = DriverManager.getConnection(url, "lion", "1234");
 
 			//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 			//			con = DriverManager.getConnection(url, "root", "1234");
 
-			
+>>>>>>> main
+			System.out.println(2);
 
 			String sql = "select * from members";
 
 			pstmt = con.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
-			
+			System.out.println(3);
+<<<<<<< HEAD
+=======
 
 			//sql±¸¹® ½ÇÇàÇÏ±â
+>>>>>>> main
 
+			//sqlêµ¬ë¬¸ ì‹¤í–‰í•˜ê¸°
+			
 			while(rs.next()){
 				if(id.equals(rs.getString("id"))) {
-					if(pwd.equals(rs.getString("pwd"))){
-						n=1;
-						break;
-					}
+					n=1;
+					break;
 				}
+				if(pwd.equals(rs.getString("pwd"))){
+					n=1;
+					break;
+				}
+				
+				
 			}
+			
 			System.out.println(4);
 		}catch(ClassNotFoundException ce){
 
@@ -115,14 +132,14 @@ public class LoginServlet extends HttpServlet{
 				System.out.println(se.getMessage());
 
 			}
-
+			
 		}
 
+		
 
+		// 3. ì‚¬ìš©ì(í´ë¼ì´ì–¸íŠ¸)ì— ê²°ê³¼ë¥¼ ì‘ë‹µí•˜ê¸°.
 
-		// 3. »ç¿ëÀÚ(Å¬¶óÀÌ¾ğÆ®)¿¡ °á°ú¸¦ ÀÀ´äÇÏ±â.
-
-		response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html;charset=euc-kr");
 
 		PrintWriter pw = response.getWriter();
 
@@ -133,23 +150,23 @@ public class LoginServlet extends HttpServlet{
 		pw.println("<body>");
 
 		if(n>0){
-			pw.println( id + "·Î±×ÀÎµÇ¾ú½À´Ï´Ù..<br/>");
+			pw.println( id + "ë¡œê·¸ì¸ë˜ì—ˆìŠµë‹ˆë‹¤..<br/>");
 			HttpSession session = request.getSession();
 			session.setAttribute("memberId", id);
 			//response.sendRedirect("/loginMain.jsp");
 
-
+		
 			RequestDispatcher rd = request.getRequestDispatcher("/loginMain.jsp");
 			rd.forward(request, response);
 			//response.sendRedirect("/loginMain.jsp");
 		}else{
 
-			pw.println("¾ø´Â °èÁ¤ÀÔ´Ï´Ù..<br/>");
+			pw.println("ì—†ëŠ” ê³„ì •ì…ë‹ˆë‹¤..<br/>");
 
-			pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
+			pw.println("<a href='javascript:history.go(-1)'>ì´ì „í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
 
 		}
-
+		
 
 		pw.println("</body>");
 

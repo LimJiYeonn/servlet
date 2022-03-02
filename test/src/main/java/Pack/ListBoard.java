@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ListBoard extends HttpServlet{
-
+	
 
 	@Override
 	protected void service(HttpServletRequest resquest, HttpServletResponse response)
@@ -36,7 +36,7 @@ public class ListBoard extends HttpServlet{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
-
+		
 		response.setContentType("text/html;charset=UTF-8");
 
 		PrintWriter pw = response.getWriter();
@@ -48,11 +48,9 @@ public class ListBoard extends HttpServlet{
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-						String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-					     con = DriverManager.getConnection(url, "lion", "1234");	
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
+			con = DriverManager.getConnection(url, "root", "1234");
 			String sql = "select * from boards";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -60,11 +58,19 @@ public class ListBoard extends HttpServlet{
 			pw.println("<div>");
 			pw.println("<table border='1' width='1200'>");
 			pw.println("<tr>");
-			pw.println("<td>ï¿½ï¿½È£</td>");
-			pw.println("<td>ï¿½ï¿½ï¿½ï¿½</td>");
-			pw.println("<td>ï¿½Û¼ï¿½ï¿½ï¿½</td>");
-			pw.println("<td>ï¿½ï¿½ï¿½ï¿½ï¿½</td>");
+<<<<<<< HEAD
+			pw.println("<td>ë²ˆí˜¸</td>");
+			pw.println("<td>ì œëª©</td>");
+			pw.println("<td>ì‘ì„±ì</td>");
+			pw.println("<td>ë“±ë¡ì¼</td>");
+			
+=======
+			pw.println("<td>¹øÈ£</td>");
+			pw.println("<td>Á¦¸ñ</td>");
+			pw.println("<td>ÀÛ¼ºÀÚ</td>");
+			pw.println("<td>µî·ÏÀÏ</td>");
 
+>>>>>>> main
 			pw.println("</tr>");
 			while(rs.next()){
 				Integer num = rs.getInt("num");
@@ -77,12 +83,16 @@ public class ListBoard extends HttpServlet{
 				pw.println("<td><a href='ViewDetailBoard.do?num=" + num + "'>"+title+"</a></td>");
 				pw.println("<td>" + wr + "</td>");
 				pw.println("<td>" + regdate + "</td>");
-
+				
 				pw.println("</tr>");
 			}
 			pw.println("</table>");
 			pw.println("</div>");
-			pw.println("<a href='loginMain.jsp'>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½</a>");
+<<<<<<< HEAD
+			pw.println("<a href='loginMain.jsp'>ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™</a>");
+=======
+			pw.println("<a href='loginMain.jsp'>¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿</a>");
+>>>>>>> main
 		}catch(ClassNotFoundException ce){
 			System.out.println(ce.getMessage());
 		}catch(SQLException se){
