@@ -40,7 +40,7 @@ public class DeleteServlet extends HttpServlet{
 		String id=request.getParameter("id");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter pw = response.getWriter();
-
+// test
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
