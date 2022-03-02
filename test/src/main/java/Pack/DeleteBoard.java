@@ -68,8 +68,13 @@ public class DeleteBoard extends HttpServlet{
 			pw.println("<html>");
 			pw.println("<head></head>");
 			pw.println("<body>");
+<<<<<<< HEAD
 			pw.println("게시글삭제에 실패했습니다. ");
 			pw.println("<a href='javascript:history.go(-1)'>이전페이지로 가기</a>");
+=======
+			pw.println("�Խñۻ����� �����߽안녕하세요��ϴ�. ");
+			pw.println("<a href='javascript:history.go(-1)'>������������ ����</a>");
+>>>>>>> main
 			pw.println("</body>");
 			pw.println("</html>");
 			pw.close();

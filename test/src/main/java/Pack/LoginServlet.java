@@ -68,10 +68,19 @@ public class LoginServlet extends HttpServlet{
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
+<<<<<<< HEAD
 			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 			
 			con = DriverManager.getConnection(url, "root", "1234");
 			
+=======
+			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
+			con = DriverManager.getConnection(url, "lion", "1234");
+
+			//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+			//			con = DriverManager.getConnection(url, "root", "1234");
+
+>>>>>>> main
 			System.out.println(2);
 
 			String sql = "select * from members";
@@ -80,6 +89,11 @@ public class LoginServlet extends HttpServlet{
 
 			rs = pstmt.executeQuery();
 			System.out.println(3);
+<<<<<<< HEAD
+=======
+
+			//sql±¸¹® ½ÇÇàÇÏ±â
+>>>>>>> main
 
 			//sqlêµ¬ë¬¸ ì‹¤í–‰í•˜ê¸°
 			

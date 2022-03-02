@@ -45,7 +45,11 @@ public class DeleteServlet extends HttpServlet{
 
 		
 
+<<<<<<< HEAD
 		request.setCharacterEncoding("euc-kr");
+=======
+		request.setCharacterEncoding("UTF-8");
+>>>>>>> main
 
 		String id=request.getParameter("id");
 
@@ -59,10 +63,20 @@ public class DeleteServlet extends HttpServlet{
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
+<<<<<<< HEAD
 			String url = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC";
 
 			con = DriverManager.getConnection(url, "root", "1234");
 
+=======
+			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
+	        con = DriverManager.getConnection(url, "lion", "1234");
+
+	        
+//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+//			con = DriverManager.getConnection(url, "root", "1234");	
+	        
+>>>>>>> main
 			String sql = "delete from members where id=?";
 
 			pstmt = con.prepareStatement(sql);
@@ -109,9 +123,15 @@ public class DeleteServlet extends HttpServlet{
 
 			pw.println("<body>");
 
+<<<<<<< HEAD
 			pw.println("íšŒì›ì‚­ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ");
 
 			pw.println("<a href='javascript:history.go(-1)'>ì´ì „í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
+=======
+			pw.println("È¸¿ø»èÁ¦¿¡ ½ÇÆĞÇß½À´Ï´Ù. ");
+
+			pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
+>>>>>>> main
 
 			pw.println("</body>");
 

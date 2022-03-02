@@ -42,12 +42,19 @@ public class ListServlet extends HttpServlet{
 		Connection con=null;
 
 		PreparedStatement pstmt=null;
+<<<<<<< HEAD
+=======
+
+		ResultSet rs = null;
+>>>>>>> main
 
 		ResultSet rs = null;
 
 		response.setContentType("text/html;charset=euc-kr");
 
 		
+
+
 
 		PrintWriter pw = response.getWriter();
 
@@ -57,15 +64,27 @@ public class ListServlet extends HttpServlet{
 
 		pw.println("<body>");
 
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> main
 
 		try{
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
+<<<<<<< HEAD
 			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 
 			con = DriverManager.getConnection(url, "root", "1234");
+=======
+						String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
+					     con = DriverManager.getConnection(url, "lion", "1234");
+
+//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+//			con = DriverManager.getConnection(url, "root", "1234");
+>>>>>>> main
 
 			String sql = "select * from members";
 
@@ -73,7 +92,11 @@ public class ListServlet extends HttpServlet{
 
 			rs = pstmt.executeQuery();
 
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> main
 
 			pw.println("<div>");
 
@@ -81,6 +104,7 @@ public class ListServlet extends HttpServlet{
 
 			pw.println("<tr>");
 
+<<<<<<< HEAD
 			pw.println("<td>ì•„ì´ë””</td>");
 
 			pw.println("<td>ë¹„ë°€ë²ˆí˜¸</td>");
@@ -94,6 +118,21 @@ public class ListServlet extends HttpServlet{
 			pw.println("<td>ì‚­ì œ</td>");
 
 			pw.println("<td>ìˆ˜ì •</td>");
+=======
+			pw.println("<td>¾ÆÀÌµğ</td>");
+
+			pw.println("<td>ºñ¹Ğ¹øÈ£</td>");
+
+			pw.println("<td>ÀÌ¸ŞÀÏ</td>");
+
+			pw.println("<td>ÀüÈ­¹øÈ£</td>");
+
+			pw.println("<td>µî·ÏÀÏ</td>");
+
+			pw.println("<td>»èÁ¦</td>");
+
+			pw.println("<td>¼öÁ¤</td>");
+>>>>>>> main
 
 			pw.println("</tr>");
 
@@ -123,6 +162,7 @@ public class ListServlet extends HttpServlet{
 
 				pw.println("<td>" + regdate + "</td>");
 
+<<<<<<< HEAD
 				pw.println("<td><a href='delete.do?id=" + id + "'>ì‚­ì œ</a></td>");
 
 				pw.println("<td><a href='update.do?id=" + id + "'>ìˆ˜ì •</a></td>");
@@ -130,6 +170,15 @@ public class ListServlet extends HttpServlet{
 				pw.println("</tr>");
 
 				
+=======
+				pw.println("<td><a href='delete.do?id=" + id + "'>»èÁ¦</a></td>");
+
+				pw.println("<td><a href='update.do?id=" + id + "'>¼öÁ¤</a></td>");
+
+				pw.println("</tr>");
+
+
+>>>>>>> main
 
 			}
 
@@ -137,7 +186,11 @@ public class ListServlet extends HttpServlet{
 
 			pw.println("</div>");
 
+<<<<<<< HEAD
 			pw.println("<a href='main.html'>ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™</a>");
+=======
+			pw.println("<a href='main.html'>¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿</a>");
+>>>>>>> main
 
 		}catch(ClassNotFoundException ce){
 
@@ -165,7 +218,11 @@ public class ListServlet extends HttpServlet{
 
 		}
 
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> main
 
 		pw.println("</body>");
 
