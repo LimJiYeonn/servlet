@@ -26,7 +26,7 @@ public class UpdateOkBoard extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("����� Ȯ��");
+		System.out.println("디버깅 확인");
 
 		
 		req.setCharacterEncoding("UTF-8");
@@ -41,12 +41,10 @@ public class UpdateOkBoard extends HttpServlet{
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-		     con = DriverManager.getConnection(url, "lion", "1234");
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
-			
+			con = DriverManager.getConnection(url, "root", "1234");
+
 			String sql = "update boards set title=?,content=? where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, title);
@@ -60,7 +58,7 @@ public class UpdateOkBoard extends HttpServlet{
 			}else{
 				PrintWriter pw = resp.getWriter();
 				pw.println("<html><head></head>");
-				pw.println("<body>����</body>");
+				pw.println("<body>실패</body>");
 				pw.println("</html>");
 				pw.close();
 			}

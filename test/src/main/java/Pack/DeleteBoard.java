@@ -41,14 +41,9 @@ public class DeleteBoard extends HttpServlet{
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-			con = DriverManager.getConnection(url, "lion", "1234");
-			
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
-			
-			
-			
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+
+			con = DriverManager.getConnection(url, "root", "1234");
 			String sql = "delete from boards where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -73,8 +68,8 @@ public class DeleteBoard extends HttpServlet{
 			pw.println("<html>");
 			pw.println("<head></head>");
 			pw.println("<body>");
-			pw.println("�Խñۻ����� �����߽��ϴ�. ");
-			pw.println("<a href='javascript:history.go(-1)'>������������ ����</a>");
+			pw.println("게시글삭제에 실패했습니다. ");
+			pw.println("<a href='javascript:history.go(-1)'>이전페이지로 가기</a>");
 			pw.println("</body>");
 			pw.println("</html>");
 			pw.close();

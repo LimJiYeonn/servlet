@@ -28,7 +28,7 @@ public class InsertBoard extends HttpServlet{
    @Override
    protected void service(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
-      // 1. �Ķ���ͷ� ���۵� ���� ������.
+      // 1. 파라미터로 전송된 값을 얻어오기.
       request.setCharacterEncoding("UTF-8");
       String title = request.getParameter("title");
       String content= request.getParameter("content");
@@ -39,16 +39,13 @@ public class InsertBoard extends HttpServlet{
       Connection con = null;
 
       try{
-         // 2. ���۵� ���� db�� ����.
+         // 2. 전송된 값을 db에 저장.
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-	        con = DriverManager.getConnection(url, "lion", "1234");
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 			
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
-	        
+			con = DriverManager.getConnection(url, "root", "1234");
          String sql = "insert into boards values( ?,?,?,?, now() )";
          pstmt = con.prepareStatement(sql);
          pstmt.setNull(1, Types.INTEGER );
@@ -56,7 +53,7 @@ public class InsertBoard extends HttpServlet{
          pstmt.setString(3, content);
          pstmt.setString(4, wr);
 
-         //sql���� �����ϱ�
+         //sql구문 실행하기
 
          n=pstmt.executeUpdate();
       }catch(ClassNotFoundException ce){
@@ -72,21 +69,21 @@ public class InsertBoard extends HttpServlet{
          }
       }
 
-      // 3. �����(Ŭ���̾�Ʈ)�� ����� �����ϱ�.
+      // 3. 사용자(클라이언트)에 결과를 응답하기.
       response.setContentType("text/html;charset=UTF-8");
       PrintWriter pw = response.getWriter();
       pw.println("<html>");
       pw.println("<head></head>");
       pw.println("<body>");
       if(n>0){
-         pw.println( wr + "��! �Խñ��� �ۼ��Ǿ����ϴ�.<br/>");
-         pw.println("<a href='listboard.do'>�Խñ� ����Ʈ�� ����</a>");
+         pw.println( wr + "님! 게시글이 작성되었습니다.<br/>");
+         pw.println("<a href='listboard.do'>메인페이지로 가기</a>");
       }else{
     	 pw.println("<script type=\"text/javascript\">");
-    	 pw.println("alert('�������� �ʴ� ���̵��Դϴ�.');");
+    	 pw.println("alert('존재하지 않는 아이디입니다.');");
     	 pw.println("</script>");
-         pw.println("�Խñ� �ۼ��� �����߽��ϴ�.<br/>");
-         pw.println("<a href='javascript:history.go(-1)'>������������ ����</a>");
+         pw.println("게시글 작성에 실패했습니다.<br/>");
+         pw.println("<a href='javascript:history.go(-1)'>이전페이지로 가기</a>");
       }
       pw.println("</body>");
       pw.println("</html>");

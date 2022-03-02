@@ -47,11 +47,11 @@ public class ViewDetailBoard extends HttpServlet{
 
 		try{
 
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-		     con = DriverManager.getConnection(url, "lion", "1234");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
+			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
+
+			con = DriverManager.getConnection(url, "root", "1234");
 			String sql = "select * from boards where num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -60,7 +60,7 @@ public class ViewDetailBoard extends HttpServlet{
 			
 				HttpSession session = resquest.getSession();
 				
-				//¿©±â¼­ ±Û¹øÈ£·Î ÀÎµ¦½ÌÇØ¾ßÇÏ³×;
+				//ì—¬ê¸°ì„œ ê¸€ë²ˆí˜¸ë¡œ ì¸ë±ì‹±í•´ì•¼í•˜ë„¤;
 				rs.next();
 				String title = rs.getString("title");
 				String wr = rs.getString("wr");
@@ -74,9 +74,9 @@ public class ViewDetailBoard extends HttpServlet{
 					+ "    <table border=\"1\" width=500>\r\n"
 					
 					+"<tr>"
-					+"<td>¹øÈ£</a></td>"
-					+"<td>Á¦¸ñ</a></td>"
-					+"<td>ÀÛ¼ºÀÚ</td>"
+					+"<td>ë²ˆí˜¸</a></td>"
+					+"<td>ì œëª©</a></td>"
+					+"<td>ì‘ì„±ì</td>"
 					
 					+"</tr>"		
 					
@@ -91,30 +91,30 @@ public class ViewDetailBoard extends HttpServlet{
 					
 					+ "        <tr >\r\n"
 					+ "            <td colspan=\"3\" width = 500 height=400>\r\n"
-					+ "                <textarea placeholder=\"³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä.\" name = \"content\" style=\"width: 100%; height: 100%\" disabled>"+content+"</textarea>\r\n"
+					+ "                <textarea placeholder=\"ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”.\" name = \"content\" style=\"width: 100%; height: 100%\" disabled>"+content+"</textarea>\r\n"
 					+ "            </td>\r\n"
 					+ "        </tr>\r\n"
 					+ "        <tr>\r\n"
 					+ "            <td colspan=\"3\" align=right>\r\n"
-					+ "           	 <button type=\"button\" class=\"btn btn-default\" onClick=\"location.href='javascript:history.go(-1)'\">ÀÌÀüÆäÀÌÁö</button>\r\n"
+					+ "           	 <button type=\"button\" class=\"btn btn-default\" onClick=\"location.href='javascript:history.go(-1)'\">ì´ì „í˜ì´ì§€</button>\r\n"
 					+ "            </td>\r\n"
 					+ "        </tr>\r\n"
 					+ "<tr>"
-					+"<td>µî·ÏÀÏ</td>"
+					+"<td>ë“±ë¡ì¼</td>"
 					+"<td colspan=\"2\">" + regdate + "</td>"
 					+"</tr>"
 					+ "    </table>\r\n"
 					+ "     </form>");
 			if(wr.equals(session.getAttribute("memberId"))) {
 			pw.println("<tr>");
-			pw.println("<td><a href='deleteboard.do?num=" + num + "'>»èÁ¦</a></td>");
-			pw.println("<td><a href='updateboard.do?num=" + num + "'>¼öÁ¤</a></td>");
+			pw.println("<td><a href='deleteboard.do?num=" + num + "'>ì‚­ì œ</a></td>");
+			pw.println("<td><a href='updateboard.do?num=" + num + "'>ìˆ˜ì •</a></td>");
 			pw.println("</tr>");
 			}
-			//pw.println("<a href='loginMain.jsp'>¸ŞÀÎÆäÀÌÁö·Î ÀÌµ¿</a>");
-		} /*catch(ClassNotFoundException ce){
+			//pw.println("<a href='loginMain.jsp'>ë©”ì¸í˜ì´ì§€ë¡œ ì´ë™</a>");
+		}catch(ClassNotFoundException ce){
 			System.out.println(ce.getMessage());
-			}*/catch(SQLException se){
+		}catch(SQLException se){
 			System.out.println(se.getMessage());
 		}finally{
 			try{
