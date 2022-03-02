@@ -123,15 +123,9 @@ public class DeleteServlet extends HttpServlet{
 
 			pw.println("<body>");
 
-<<<<<<< HEAD
 			pw.println("íšŒì›ì‚­ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ");
 
 			pw.println("<a href='javascript:history.go(-1)'>ì´ì „í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
-=======
-			pw.println("È¸¿ø»èÁ¦¿¡ ½ÇÆĞÇß½À´Ï´Ù. ");
-
-			pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
->>>>>>> main
 
 			pw.println("</body>");
 
