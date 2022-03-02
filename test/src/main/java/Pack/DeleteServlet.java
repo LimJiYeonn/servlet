@@ -35,7 +35,7 @@ public class DeleteServlet extends HttpServlet{
 		Connection con = null;
 		PreparedStatement pstmt=null;
 		int n=0;
-
+// test
 		request.setCharacterEncoding("UTF-8");
 		String id=request.getParameter("id");
 		response.setContentType("text/html;charset=UTF-8");
