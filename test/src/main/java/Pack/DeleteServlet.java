@@ -1,8 +1,6 @@
 
 package Pack;
 
-
-
 import java.io.IOException;
 
 import java.io.PrintWriter;
@@ -25,122 +23,54 @@ import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
 
-
-
 public class DeleteServlet extends HttpServlet{
-
 	@Override
-
 	protected void service(HttpServletRequest request, HttpServletResponse response)
-
-
-
 			throws ServletException, IOException {
-
 		Connection con = null;
-
 		PreparedStatement pstmt=null;
-
 		int n=0;
 
-		
-
-<<<<<<< HEAD
-		request.setCharacterEncoding("euc-kr");
-=======
 		request.setCharacterEncoding("UTF-8");
->>>>>>> main
-
 		String id=request.getParameter("id");
-
 		response.setContentType("text/html;charset=euc-kr");
-
 		PrintWriter pw = response.getWriter();
 
-		
-
 		try{
-
 			Class.forName("com.mysql.cj.jdbc.Driver");
-
-<<<<<<< HEAD
-			String url = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC";
-
-			con = DriverManager.getConnection(url, "root", "1234");
-
-=======
 			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
 	        con = DriverManager.getConnection(url, "lion", "1234");
 
-	        
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");	
-	        
->>>>>>> main
 			String sql = "delete from members where id=?";
-
 			pstmt = con.prepareStatement(sql);
-
 			pstmt.setString(1, id);
-
 			n= pstmt.executeUpdate();
 
-			
-
 		}catch(ClassNotFoundException ce){
-
 			System.out.println(ce.getMessage());
-
 		}catch(SQLException se){
-
 			System.out.println(se.getMessage());
-
 		}finally{
-
 			try{
-
 				if(pstmt!=null) pstmt.close();
-
 				if(con!=null) con.close();
-
 			}catch(SQLException se){
-
 				System.out.println(se.getMessage());
-
 			}
-
 		}
-
 		if(n>0){
-
 			response.sendRedirect("list.do");
-
 		}else{
-
 			pw.println("<html>");
-
 			pw.println("<head></head>");
-
 			pw.println("<body>");
 
-<<<<<<< HEAD
 			pw.println("íšŒì›ì‚­ì œì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ");
-
 			pw.println("<a href='javascript:history.go(-1)'>ì´ì „í˜ì´ì§€ë¡œ ê°€ê¸°</a>");
-=======
-			pw.println("È¸¿ø»èÁ¦¿¡ ½ÇÆĞÇß½À´Ï´Ù. ");
-
-			pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
->>>>>>> main
 
 			pw.println("</body>");
-
 			pw.println("</html>");
-
 			pw.close();
-
 		}
-
 	}
-
 }

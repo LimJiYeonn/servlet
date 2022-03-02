@@ -33,7 +33,6 @@ public class UpdateServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 
 			throws ServletException, IOException {
-<<<<<<< HEAD
 
 		// 1. parameterë¡œ ì „ì†¡ëœ idì–»ê¸°.
 
@@ -44,18 +43,6 @@ public class UpdateServlet extends HttpServlet{
 		// 2. idì— í•´ë‹¹í•˜ëŠ” ì •ë³´ë¥¼ dbì—ì„œ ì¡°íšŒí•´ì„œ ì¶œë ¥.
 
 		resp.setContentType("text/html;charset=euc-kr");
-=======
-
-		// 1. parameter·Î Àü¼ÛµÈ id¾ò±â.
-
-		String id=req.getParameter("id");
-
-		
-
-		// 2. id¿¡ ÇØ´çÇÏ´Â Á¤º¸¸¦ db¿¡¼­ Á¶È¸ÇØ¼­ Ãâ·Â.
-
-		resp.setContentType("text/html;charset=UTF-8");
->>>>>>> main
 
 		PrintWriter pw = resp.getWriter();
 
@@ -75,7 +62,6 @@ public class UpdateServlet extends HttpServlet{
 
 		try{
 
-<<<<<<< HEAD
 			// 2. ì „ì†¡ëœ ê°’ì„ dbì— ì €ìž¥.
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -84,17 +70,6 @@ public class UpdateServlet extends HttpServlet{
 
 			con = DriverManager.getConnection(url, "root", "1234");
 
-=======
-			// 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
-
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-		     con = DriverManager.getConnection(url, "lion", "1234");
-			
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
->>>>>>> main
 			
 
 			String sql = "select * from members where id=?";
@@ -105,11 +80,7 @@ public class UpdateServlet extends HttpServlet{
 
 			
 
-<<<<<<< HEAD
 			//sqlêµ¬ë¬¸ ì‹¤í–‰í•˜ê¸°
-=======
-			//sql±¸¹® ½ÇÇàÇÏ±â
->>>>>>> main
 
 			rs = pstmt.executeQuery();
 
@@ -127,25 +98,15 @@ public class UpdateServlet extends HttpServlet{
 
 			pw.println("<input type='hidden' name='id' value='" + id + "'/>");
 
-<<<<<<< HEAD
 			pw.println("ì•„ì´ë””<input type='text' name='id' value='" + id + "' disabled='disabled'/><br/>");
 
 			pw.println("ë¹„ë°€ë²ˆí˜¸<input type='text' name='pwd' value='" + pwd + "'/><br/>");
-=======
-			pw.println("¾ÆÀÌµð<input type='text' name='id' value='" + id + "' disabled='disabled'/><br/>");
-
-			pw.println("ºñ¹Ð¹øÈ£<input type='text' name='pwd' value='" + pwd + "'/><br/>");
->>>>>>> main
 
 			pw.println("email<input type='text' name='email' value='" + email + "'/><br/>");
 
 			pw.println("phone<input type='text' name='phone' value='" + phone + "'/><br/>");
 
-<<<<<<< HEAD
 			pw.println("<input type='submit' value='ì €ìž¥'/><br/>");
-=======
-			pw.println("<input type='submit' value='ÀúÀå'/><br/>");
->>>>>>> main
 
 			pw.println("</form>");
 
