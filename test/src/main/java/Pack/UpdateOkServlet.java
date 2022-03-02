@@ -33,11 +33,7 @@ public class UpdateOkServlet extends HttpServlet{
 
 			throws ServletException, IOException {
 
-<<<<<<< HEAD
-		req.setCharacterEncoding("euc-kr");
-=======
-		req.setCharacterEncoding("UTF-8");
->>>>>>> main
+		req.setCharacterEncoding("UFT-8");
 
 		String id=req.getParameter("id");
 
@@ -58,7 +54,6 @@ public class UpdateOkServlet extends HttpServlet{
 		try{
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
 
 			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
 
@@ -68,19 +63,6 @@ public class UpdateOkServlet extends HttpServlet{
 
 			String sql = "update members set pwd=?,email=?,phone=? where id=?";
 
-=======
-
-			String url = "jdbc:mysql://18.205.188.103:3306/test?&useSSL=false";
-		     con = DriverManager.getConnection(url, "lion", "1234");
-			
-			
-//			String url = "jdbc:mysql://localhost:3306/test?&useSSL=false";
-//			con = DriverManager.getConnection(url, "root", "1234");
-			
-
-			String sql = "update members set pwd=?,email=?,phone=? where id=?";
-
->>>>>>> main
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, pwd);
@@ -107,11 +89,7 @@ public class UpdateOkServlet extends HttpServlet{
 
 				pw.println("<html><head></head>");
 
-<<<<<<< HEAD
 				pw.println("<body>ì‹¤íŒ¨</body>");
-=======
-				pw.println("<body>½ÇÆÐ</body>");
->>>>>>> main
 
 				pw.println("</heal>");
 
