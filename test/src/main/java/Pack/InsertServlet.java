@@ -21,7 +21,7 @@ public class InsertServlet extends HttpServlet{
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter pw = response.getWriter();
-		// 1. 파라미터로 전송된 값을 얻어오기.ㅇ
+		// 1. 파라미터로 전송된 값을 얻어오기.
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pwd= request.getParameter("pwd");
@@ -60,7 +60,6 @@ public class InsertServlet extends HttpServlet{
 				pstmt2.close();
 				rs.close();
 			}
-			
 			String sql = "insert into test01 values( ?,?,?,?, now() )";
 				
 			pstmt = con.prepareStatement(sql);
@@ -71,7 +70,6 @@ public class InsertServlet extends HttpServlet{
 
 			//sql구문 실행하기
 			n=pstmt.executeUpdate();
-
 
 		}catch(ClassNotFoundException ce){
 			System.out.println(ce.getMessage());
