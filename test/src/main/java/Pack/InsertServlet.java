@@ -21,7 +21,7 @@ public class InsertServlet extends HttpServlet{
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter pw = response.getWriter();
-		// 1. 파라미터로 전송된 값을 얻어오기.
+		// 1. 파라미터로 전송된 값을 얻어오기.ㅇ
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pwd= request.getParameter("pwd");
