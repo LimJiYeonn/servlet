@@ -73,7 +73,7 @@ public class DeleteBoard extends HttpServlet{
 			pw.println("<html>");
 			pw.println("<head></head>");
 			pw.println("<body>");
-			pw.println("�Խñۻ����� �����߽��ϴ�. ");
+			pw.println("�Խñۻ����� �����߽안녕하세요��ϴ�. ");
 			pw.println("<a href='javascript:history.go(-1)'>������������ ����</a>");
 			pw.println("</body>");
 			pw.println("</html>");

@@ -28,7 +28,7 @@ public class InsertBoard extends HttpServlet{
    @Override
    protected void service(HttpServletRequest request, HttpServletResponse response)
          throws ServletException, IOException {
-      // 1. ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+      // 1. ÆÄ¶ó¹ÌÅÍ·Î Àü¼ÛµÈ °ªÀ» ¾ò¾î¿À±â.
       request.setCharacterEncoding("UTF-8");
       String title = request.getParameter("title");
       String content= request.getParameter("content");
@@ -39,7 +39,7 @@ public class InsertBoard extends HttpServlet{
       Connection con = null;
 
       try{
-         // 2. ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+         // 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -56,7 +56,7 @@ public class InsertBoard extends HttpServlet{
          pstmt.setString(3, content);
          pstmt.setString(4, wr);
 
-         //sqlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+         //sql±¸¹® ½ÇÇàÇÏ±â
 
          n=pstmt.executeUpdate();
       }catch(ClassNotFoundException ce){
@@ -72,21 +72,21 @@ public class InsertBoard extends HttpServlet{
          }
       }
 
-      // 3. ï¿½ï¿½ï¿½ï¿½ï¿½(Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½.
+      // 3. »ç¿ëÀÚ(Å¬¶óÀÌ¾ðÆ®)¿¡ °á°ú¸¦ ÀÀ´äÇÏ±â.
       response.setContentType("text/html;charset=UTF-8");
       PrintWriter pw = response.getWriter();
       pw.println("<html>");
       pw.println("<head></head>");
       pw.println("<body>");
       if(n>0){
-         pw.println( wr + "ï¿½ï¿½! ï¿½Ô½Ã±ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.<br/>");
-         pw.println("<a href='listboard.do'>ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a>");
+         pw.println( wr + "´Ô! °Ô½Ã±ÛÀÌ ÀÛ¼ºµÇ¾ú½À´Ï´Ù.<br/>");
+         pw.println("<a href='listboard.do'>°Ô½Ã±Û ¸®½ºÆ®·Î °¡±â</a>");
       }else{
     	 pw.println("<script type=\"text/javascript\">");
-    	 pw.println("alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.');");
+    	 pw.println("alert('Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµðÀÔ´Ï´Ù.');");
     	 pw.println("</script>");
-         pw.println("ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.<br/>");
-         pw.println("<a href='javascript:history.go(-1)'>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a>");
+         pw.println("°Ô½Ã±Û ÀÛ¼º¿¡ ½ÇÆÐÇß½À´Ï´Ù.<br/>");
+         pw.println("<a href='javascript:history.go(-1)'>ÀÌÀüÆäÀÌÁö·Î °¡±â</a>");
       }
       pw.println("</body>");
       pw.println("</html>");

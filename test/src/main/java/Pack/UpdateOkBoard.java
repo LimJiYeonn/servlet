@@ -26,7 +26,7 @@ public class UpdateOkBoard extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½");
+		System.out.println("µð¹ö±ë È®ÀÎ");
 
 		
 		req.setCharacterEncoding("UTF-8");
@@ -60,7 +60,7 @@ public class UpdateOkBoard extends HttpServlet{
 			}else{
 				PrintWriter pw = resp.getWriter();
 				pw.println("<html><head></head>");
-				pw.println("<body>ï¿½ï¿½ï¿½ï¿½</body>");
+				pw.println("<body>½ÇÆÐ</body>");
 				pw.println("</html>");
 				pw.close();
 			}

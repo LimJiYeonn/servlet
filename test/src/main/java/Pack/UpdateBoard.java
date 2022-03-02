@@ -28,10 +28,10 @@ public class UpdateBoard extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// 1. parameterï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ idï¿½ï¿½ï¿½.
+		// 1. parameter·Î Àü¼ÛµÈ id¾ò±â.
 		Integer num = Integer.parseInt(req.getParameter("num"));
 
-		// 2. idï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½.
+		// 2. id¿¡ ÇØ´çÇÏ´Â Á¤º¸¸¦ db¿¡¼­ Á¶È¸ÇØ¼­ Ãâ·Â.
 		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter pw = resp.getWriter();
 		pw.println("<html>");
@@ -47,7 +47,7 @@ public class UpdateBoard extends HttpServlet{
 		Connection con = null;
 		ResultSet rs=null;
 		try{
-			// 2. ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ dbï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+			// 2. Àü¼ÛµÈ °ªÀ» db¿¡ ÀúÀå.
 
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -62,7 +62,7 @@ public class UpdateBoard extends HttpServlet{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 
-			//sqlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+			//sql±¸¹® ½ÇÇàÇÏ±â
 			rs = pstmt.executeQuery();
 			rs.next();
 			String title = rs.getString("title");
@@ -75,14 +75,14 @@ public class UpdateBoard extends HttpServlet{
 			pw.println("<form method='post' action='updateokboard.do'>");
 			
 			pw.println("<input type='hidden' name='num' value='" + num + "'/>");
-			pw.println("ï¿½ï¿½ ï¿½ï¿½È£<input type='text' name='num' value='" + num + "' disabled='disabled'/><br/>");
+			pw.println("±Û ¹øÈ£<input type='text' name='num' value='" + num + "' disabled='disabled'/><br/>");
 			
 			//pw.println("<input type='hidden' name='wr' value='" + wr + "'/>");
-			pw.println("ï¿½Û¼ï¿½ï¿½ï¿½ <input type='text' name='wr' value='" + wr + "' disabled='disabled'/><br/>");
+			pw.println("ÀÛ¼ºÀÚ <input type='text' name='wr' value='" + wr + "' disabled='disabled'/><br/>");
 			
-			pw.println("ï¿½ï¿½ï¿½ï¿½  <input type='text' name='title' value='" + title + "'/><br/>");
+			pw.println("Á¦¸ñ  <input type='text' name='title' value='" + title + "'/><br/>");
 			pw.println("<textarea rows='10' type='text' name='content'>"+ content +"</textarea><br/>");
-			pw.println("<input type='submit' value='ï¿½ï¿½ï¿½ï¿½'/><br/>");
+			pw.println("<input type='submit' value='ÀúÀå'/><br/>");
 			pw.println("</form>");
 			pw.println("</div>");
 			

@@ -60,10 +60,10 @@ public class ListBoard extends HttpServlet{
 			pw.println("<div>");
 			pw.println("<table border='1' width='1200'>");
 			pw.println("<tr>");
-			pw.println("<td>ï¿½ï¿½È£</td>");
-			pw.println("<td>ï¿½ï¿½ï¿½ï¿½</td>");
-			pw.println("<td>ï¿½Û¼ï¿½ï¿½ï¿½</td>");
-			pw.println("<td>ï¿½ï¿½ï¿½ï¿½ï¿½</td>");
+			pw.println("<td>¹øÈ£</td>");
+			pw.println("<td>Á¦¸ñ</td>");
+			pw.println("<td>ÀÛ¼ºÀÚ</td>");
+			pw.println("<td>µî·ÏÀÏ</td>");
 
 			pw.println("</tr>");
 			while(rs.next()){
@@ -82,7 +82,7 @@ public class ListBoard extends HttpServlet{
 			}
 			pw.println("</table>");
 			pw.println("</div>");
-			pw.println("<a href='loginMain.jsp'>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½</a>");
+			pw.println("<a href='loginMain.jsp'>¸ÞÀÎÆäÀÌÁö·Î ÀÌµ¿</a>");
 		}catch(ClassNotFoundException ce){
 			System.out.println(ce.getMessage());
 		}catch(SQLException se){
